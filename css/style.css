@@ -1,0 +1,710 @@
+/* =====================================================
+   NazwaStore - style.css
+   ===================================================== */
+
+/* ---------- 1. Variabel warna dan reset ---------- */
+:root {
+  --navy: #1e3a8a;
+  --navy-light: #2f55c4;
+  --amber: #f59e0b;
+  --amber-soft: #fef3c7;
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --white: #ffffff;
+  --border: #cbd5e1;
+  --muted: #475569;
+  --danger: #b91c1c;
+  --success: #166534;
+  --shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 12px 28px rgba(30, 58, 138, 0.18);
+  --page-pad: max(1rem, calc((100% - 1200px) / 2)); /* sejajarkan isi dengan kolom utama */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important; /* atribut hidden selalu menang */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--bg);
+  /* pola titik halus agar latar tidak polos */
+  background-image: radial-gradient(circle at 1px 1px, #dbe3ee 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+img {
+  max-width: 100%; /* mencegah horizontal scroll di mobile */
+  display: block;
+}
+
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- 2. Aksesibilitas ---------- */
+:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 3px;
+}
+
+.site-header :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--amber);
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem; /* tersembunyi sampai mendapat fokus keyboard */
+  background: var(--amber);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* ---------- 3. Header (Flexbox) ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  padding: 1.5rem var(--page-pad);
+  color: var(--white);
+  border-bottom: 5px solid var(--amber);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(245, 158, 11, 0.38), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(255, 255, 255, 0.12), transparent 40%),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+}
+
+/* Logo: bingkai putih agar tidak menyatu dengan latar navy header */
+.logo {
+  width: 96px;
+  height: 96px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.5px;
+}
+
+.tagline,
+.identity {
+  margin: 0.25rem 0 0;
+}
+
+.identity {
+  color: #fcd34d;
+  font-weight: 600;
+}
+
+.site-header nav {
+  margin-left: auto; /* navigasi terdorong ke kanan */
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+nav a:hover {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--text);
+}
+
+/* ---------- 4. Konten utama ---------- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+main > section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  color: var(--navy);
+}
+
+/* garis aksen amber di bawah judul section */
+h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 0.35rem;
+  border-radius: 2px;
+  background: var(--amber);
+}
+
+/* ---------- 5. Tombol ---------- */
+.btn-primary,
+.btn-secondary,
+.fav-btn,
+.remove-btn {
+  min-height: 44px; /* area sentuh nyaman di mobile */
+  padding: 0.5rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--navy);
+  color: var(--white);
+  border: 2px solid var(--navy);
+}
+
+.btn-primary:hover {
+  background: var(--navy-light);
+  border-color: var(--navy-light);
+}
+
+.btn-secondary,
+.fav-btn,
+.remove-btn {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+}
+
+.btn-secondary:hover,
+.fav-btn:hover,
+.remove-btn:hover {
+  background: #e0e7ff;
+}
+
+.btn-secondary[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* Status favorit pada kartu: bintang kosong/penuh + warna */
+.fav-btn::before {
+  content: "\2606 ";
+}
+
+.fav-btn[aria-pressed="true"] {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--text);
+}
+
+.fav-btn[aria-pressed="true"]::before {
+  content: "\2605 ";
+}
+
+/* ---------- 6. Statistik (CSS Grid) ---------- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.9rem;
+  align-items: center;
+  align-content: center;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-top: 5px solid var(--amber);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff, #f1f5ff);
+}
+
+.stat-card::before {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--amber-soft);
+  font-size: 1.6rem;
+  content: "\1F6D2"; /* ikon dekoratif */
+}
+
+.stat-card:nth-child(2)::before { content: "\1F4CA"; }
+.stat-card:nth-child(3)::before { content: "\1F48E"; }
+.stat-card:nth-child(4)::before { content: "\1F3F7\FE0F"; }
+
+.stat-card p {
+  margin: 0;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 7. Toolbar katalog ---------- */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.6rem;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.segmented {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* ---------- 8. Daftar produk: mode Grid dan List ---------- */
+.product-list.view-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+
+.product-list.view-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-list > li {
+  display: flex; /* kartu mengisi tinggi baris yang sama */
+}
+
+.product-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #eef2ff, #fff7e6);
+}
+
+.product-card h3,
+.product-card p {
+  margin: 0;
+  padding-inline: 1rem;
+}
+
+.product-card h3 {
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+/* kategori tampil sebagai label (pill) */
+.product-card .product-category {
+  align-self: flex-start;
+  justify-self: start;
+  margin: 0.5rem 0 0 1rem;
+  padding: 0.1rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--navy);
+  background: #e0e7ff;
+  border-radius: 999px;
+}
+
+.product-rating {
+  font-weight: 600;
+  color: #b45309;
+}
+
+.product-price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.product-card .fav-btn {
+  margin: auto 1rem 1rem; /* menempel di bagian bawah kartu */
+  align-self: flex-start;
+}
+
+/* Mode List: gambar di kiri, teks di kanan (tanpa elemen pembungkus) */
+.view-list .product-card {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-content: center;
+  gap: 0.25rem;
+}
+
+.view-list .product-card img {
+  grid-column: 1;
+  grid-row: 1 / span 5;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.view-list .product-card > :not(img) {
+  grid-column: 2;
+}
+
+.view-list .product-card .fav-btn {
+  margin-top: 0.5rem;
+}
+
+/* ---------- 9. Favorit ---------- */
+.empty-state {
+  margin: 0;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  background: #fffbeb;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+}
+
+.empty-state::before {
+  content: "\2606";
+  display: block;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--amber);
+}
+
+.favorite-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.75rem;
+}
+
+.favorite-items li {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  column-gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--amber);
+  border-radius: 10px;
+  background: var(--white);
+}
+
+.favorite-items img {
+  grid-row: 1 / span 2;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2ff, #fff7e6);
+}
+
+.favorite-items strong {
+  overflow-wrap: anywhere;
+}
+
+.favorite-items span {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.favorite-items .remove-btn {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+/* ---------- 10. State: loading, error ---------- */
+.loading {
+  font-weight: 600;
+}
+
+.loading::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  border: 3px solid var(--border);
+  border-top-color: var(--navy);
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading::before {
+    animation: none;
+  }
+}
+
+.error-box {
+  border: 2px solid var(--danger);
+  background: #fef2f2;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+/* ---------- 11. Newsletter: dua kolom (info kiri, form kanan) ---------- */
+#newsletter {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  column-gap: 2.5rem;
+  align-items: start;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+}
+
+#newsletter > h2,
+#newsletter > p,
+#newsletter > .benefits {
+  grid-column: 1;
+}
+
+#newsletter > p {
+  margin: 0 0 1rem;
+}
+
+.benefits {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.benefits li::before {
+  content: "\2714";
+  margin-right: 0.5rem;
+  color: var(--success);
+}
+
+#newsletter > form {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  padding: 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+fieldset {
+  border: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+legend {
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  color: var(--navy);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+input:focus {
+  border-color: var(--navy);
+}
+
+/* Input tidak valid: garis putus-putus merah + pesan teks (bukan hanya warna) */
+input[aria-invalid="true"] {
+  border-color: var(--danger);
+  border-style: dashed;
+}
+
+.error-text,
+.success-text {
+  margin: 0.25rem 0 0.75rem;
+  font-weight: 600;
+}
+
+.error-text {
+  color: var(--danger);
+}
+
+.success-text {
+  color: var(--success);
+}
+
+.error-text:not(:empty)::before {
+  content: "\26A0  "; /* ikon peringatan */
+}
+
+.success-text:not(:empty)::before {
+  content: "\2714  "; /* ikon centang */
+}
+
+/* ---------- 12. Footer ---------- */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-top: 2rem;
+  padding: 1.5rem var(--page-pad);
+  color: var(--white);
+  border-top: 5px solid var(--amber);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- 13. Responsive ---------- */
+/* Tablet (sekitar 768px) */
+@media (max-width: 768px) {
+  .site-header nav {
+    margin-left: 0;
+    flex-basis: 100%; /* navigasi pindah ke baris sendiri */
+  }
+
+  .product-list.view-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  #newsletter {
+    grid-template-columns: 1fr;
+  }
+
+  #newsletter > form {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 1rem;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Mobile (<= 480px) */
+@media (max-width: 480px) {
+  main > section {
+    padding: 1rem;
+  }
+
+  .toolbar,
+  .segmented,
+  .toolbar li {
+    width: 100%;
+  }
+
+  .segmented .btn-secondary {
+    flex: 1;
+  }
+
+  .logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+  }
+
+  .product-list.view-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .view-list .product-card {
+    grid-template-columns: 1fr;
+  }
+
+  .view-list .product-card img {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .view-list .product-card > :not(img) {
+    grid-column: 1;
+  }
+
+  .favorite-items {
+    grid-template-columns: 1fr;
+  }
+}
