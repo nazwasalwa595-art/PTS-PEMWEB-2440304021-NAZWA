@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NazwaStore - dashboard katalog toko serba ada berbasis REST API DummyJSON">
+  <title>NazwaStore - Interactive General Superstore Dashboard</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Skip link: membantu pengguna keyboard melompat ke konten utama -->
+  <a href="#products" class="skip-link">Lewati ke daftar produk</a>
+
+  <header class="site-header">
+    <img src="assets/logo.png" alt="Logo NazwaStore" class="logo" width="96" height="96">
+    <hgroup>
+      <h1>NazwaStore</h1>
+      <p class="tagline">Toko serba ada: semua kebutuhan dalam satu dashboard</p>
+      <p class="identity">Nazwa Salwa Adellia | NIM 2440304021</p>
+    </hgroup>
+
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="#stats">Statistik</a></li>
+        <li><a href="#products">Produk</a></li>
+        <li><a href="#favorites">Favorit</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Analisis data: seluruh angka dihitung oleh JavaScript -->
+    <section id="stats" aria-labelledby="stats-title">
+      <h2 id="stats-title">Ringkasan Produk</h2>
+      <ul id="stats-container" class="stats-grid"></ul>
+    </section>
+
+    <!-- Area data utama dari REST API -->
+    <section id="products" aria-labelledby="products-title">
+      <h2 id="products-title">Katalog Produk</h2>
+
+      <!-- Toolbar: pilihan tampilan Grid/List (C = 3) -->
+      <menu class="toolbar" aria-label="Pengaturan tampilan katalog">
+        <li class="segmented">
+          <button type="button" id="grid-btn" class="btn-secondary" aria-pressed="true">Grid View</button>
+          <button type="button" id="list-btn" class="btn-secondary" aria-pressed="false">List View</button>
+        </li>
+      </menu>
+
+      <!-- Tiga state: loading, error, dan sukses (daftar produk tampil) -->
+      <p id="loading" class="loading" aria-live="polite" hidden>Memuat produk...</p>
+      <p id="error" class="error-box" role="alert" hidden></p>
+
+      <ul id="product-list" class="product-list view-grid"></ul>
+    </section>
+
+    <section id="favorites" aria-labelledby="favorites-title">
+      <h2 id="favorites-title">Produk Favorit</h2>
+      <p id="favorite-empty" class="empty-state">Favorit akan tampil setelah data produk dimuat.</p>
+      <ul id="favorite-list" class="favorite-items"></ul>
+    </section>
+
+    <!-- novalidate: validasi dilakukan JavaScript, bukan bawaan browser -->
+    <section id="newsletter" aria-labelledby="newsletter-title">
+      <h2 id="newsletter-title">Daftar Newsletter</h2>
+      <p>Dapatkan info produk dan promo terbaru dari NazwaStore langsung ke email kamu.</p>
+      <ul class="benefits">
+        <li>Info produk terbaru</li>
+        <li>Promo dan diskon spesial</li>
+        <li>Rekomendasi produk pilihan</li>
+      </ul>
+
+      <form id="newsletter-form" novalidate>
+        <fieldset>
+          <legend>Data pendaftaran</legend>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required
+                 autocomplete="email" placeholder="contoh: nazwa@email.com"
+                 aria-describedby="email-error" aria-invalid="false">
+          <p id="email-error" class="error-text" aria-live="polite"></p>
+
+          <label for="confirm-email">Konfirmasi Email</label>
+          <input type="email" id="confirm-email" name="confirm-email" required
+                 autocomplete="off" placeholder="ketik ulang email yang sama"
+                 aria-describedby="confirm-email-error" aria-invalid="false">
+          <p id="confirm-email-error" class="error-text" aria-live="polite"></p>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Daftar Newsletter</button>
+        <p id="form-success" class="success-text" role="status"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>Nazwa Salwa Adellia</strong> | NIM 2440304021 | Teknik Komputer A1</p>
+    <p>PTS Pemrograman Web - Universitas Borneo Tarakan</p>
+    <p>Sumber data: DummyJSON REST API</p>
+  </footer>
+
+  <!-- type="module": memungkinkan import/export antar file JS (jalankan lewat server lokal) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
